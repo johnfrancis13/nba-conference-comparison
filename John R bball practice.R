@@ -115,8 +115,12 @@ all_stats$Team <- gsub("New Orleans/Oklahoma City Hornets",
 #   "Minnesota Timberwolves", "Los Angeles Lakers"))<-"West" & 
 #   all_stats$Team("League Average")<-NA))
 
-# this works to create a column for conference, likely a better way though
+# this works to create a column for conference
 index <- c(
+  "East","East","East","East","East","East","East","East","East","East","East",
+  "East","East","East","East","West","West","West","West","West","West","West",
+  "West","West","West","West","West","West","West","West",NA)
+names(index) <- c(
   "Boston Celtics", "Cleveland Cavaliers","Toronto Raptors", 
   "Washington Wizards","Atlanta Hawks", "Milwaukee Bucks", "Indiana Pacers",
   "Chicago Bulls", "Miami Heat", "Detroit Pistons", "Charlotte Hornets",  
@@ -127,11 +131,7 @@ index <- c(
   "New Orleans Pelicans", "Dallas Mavericks", "Sacramento Kings",
   "Minnesota Timberwolves", "Los Angeles Lakers","Phoenix Suns", 
   "League Average")
-values <- c(
-  "East","East","East","East","East","East","East","East","East","East","East",
-  "East","East","East","East","West","West","West","West","West","West","West",
-  "West","West","West","West","West","West","West","West",NA)
-all_stats$conference <- values[match(all_stats$Team, index)]
+all_stats$conference <- unname(index[all_stats$Team])
 
 # Figure out how you want to compare conferences over time----------------------
 # Strength Factor= (win percentage)+(effective fg%-opp effective fg%)+(strength
